@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            width: 1200px;
+            box-sizing: border-box;
+            border: 2px #e3e3e3 solid;
+            border-top:2px #317ee7 solid ;
+            margin: 50px auto;
+        }
+        .head {
+            height: 70px;
+            padding-left: 20px;
+            color: #317ee7;
+            line-height: 70px;
+            font-weight: 800;
+            font-size: 18px;
+        }
+        .column {
+            height: 60px;
+            display: flex;
+        }
+        .column>div {
+            background-color: #f7f7f7;
+            margin-left: 2px;
+            display: flex;
+            align-items: center;
+            color: #333;
+            font-size: 14px;;
+            font-weight: 900;
+        }
+        .all {
+            width: 70px;
+            height: 30px;
+            padding: 15px 10px;
+        }
+        .all>span,.intr_choose>span {
+            margin-left: 10px;
+        }
+        .all>img,.intr_choose>img {
+            width: 25px;
+            height: 25px;
+        }
+        .count,.unit_cost,.all_cost,.operation,.goods {
+            width: 160px;
+            height: 60px;
+            justify-content: center;
+        }
+        .intr {
+            height: 100px;
+            padding:15px 2px ;
+            display: flex;
+        }
+        .intr>div {
+            display: flex;
+            height: 100px;
+            align-items: center;
+            margin-left: 2px;
+        }
+        .intr_choose {
+            width:70px ;
+            padding: 0 10px;
+            font-size: 14px;
+            font-weight: 800;
+            margin-left: 0 !important;
+        }
+        .intr_goods {
+            width: 470px;
+        }
+        .intr_goods>img {
+            width: 200px;
+            height: 100px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+        #title {
+            font-size: 18px;
+            color: #000000;
+            font-weight: 800;
+        }
+        .intr_goods_info {
+            color: #333;
+            font-size: 12px;
+            line-height: 25px;
+            margin-left: 10px;
+        }
+        .intr_count,.intr_money,.money,.intr_operation {
+            width: 160px;
+            height: 100px;
+            justify-content: center;
+            align-items: center;
+            color: red;
+            font-size: 14px;
+        }
+        .intr_count>div {
+            display: flex;
+            border: 1px #e3e3e3 solid;
+        }
+        .minus,.plus,.intr_count>div>p {
+            height: 20px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f7f7;
+            color: #000000;
+        }
+        .minus>img,.plus>img{
+            height: 20px;
+            width: 20px;
+        }
+        .feature {
+            height: 50px;
+            padding-left: 20px;
+            background-color: #f7f7f7;
+            line-height: 50px;
+        }
+        .clear {
+            clear: both;
+        }
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .account {
+            width: 110px;
+            height: 100%;
+            background-color: #ff7700;
+            color: #ffffff;
+            line-height: 50px;
+            margin-left: 20px;
+        }
+        .account>p {
+            width: 60px;
+            margin: auto;
+            font-size: 20px;
+        }
+        .both {
+            display: flex;
+            align-content: center;
+            color: red;
+        }
+        .intr .intr_operation>p {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="head">
+            <p>购物清单</p>
+        </div>
+        <div class="column">
+            <div class="all">
+                <img src="choose.png" class="aselect">
+                <span>全选</span>
+            </div>
+            <div class="goods" style="width: 470px;">
+                <p>商品</p>
+            </div>
+            <div class="count" >
+                <p>数量</p>
+            </div>
+            <div class="unit_cost">
+                <p>单价(元)</p>
+            </div>
+            <div class="all_cost">
+                <p>金融(元)</p>
+            </div>
+            <div class="operation" style="width: 146px;margin-right: 2px;">
+                <p>操作</p>
+            </div>
+        </div>
+        <div class="intr">
+            <div class="intr_choose">
+                <img src="choose.png" class="choose">
+                <span>选择</span>
+            </div>
+            <div class="intr_goods">
+                <img src="RTX4090.jpg">
+                <div class="intr_goods_info" style="display: block;">
+                    <p id="title">产品名称:索泰RTX4090</p>
+                    <p>品牌:索泰 分类:显卡</p>
+                    <p>规格:RTX4090标准版</p>
+                    <p>配送:顺丰骑自行车专送</p>
+                </div>
+            </div>
+            <div class="intr_count">
+                <div>
+                    <div class="minus">
+                        <img src="minus.png" alt="">
+                    </div>
+                    <p style="background-color: #ffffff;">1</p>
+                    <div class="plus">
+                        <img src="plus.png">
+                    </div>
+                </div>
+            </div>
+            <div class="intr_money">
+                <p>￥18888</p>
+            </div>
+            <div class="money">
+                <p>￥18888</p>
+            </div>
+            <div class="intr_operation" style="width: 146px;margin-right: 2px;color: #000000;">
+                <p>删除</p>
+            </div>
+        </div>
+        <div class="intr">
+            <div class="intr_choose">
+                <img src="choose.png" class="choose">
+                <span>选择</span>
+            </div>
+            <div class="intr_goods">
+                <img src="RTX4080.jpg">
+                <div class="intr_goods_info" style="display: block;">
+                    <p id="title">产品名称:七彩虹RTX4080火神</p>
+                    <p>品牌:七彩虹 分类:显卡</p>
+                    <p>规格:RTX4080顶级非公版</p>
+                    <p>配送:顺丰骑自行车专送</p>
+                </div>
+            </div>
+            <div class="intr_count">
+                <div>
+                    <div class="minus">
+                        <img src="minus.png" alt="">
+                    </div>
+                    <p style="background-color: #ffffff;">1</p>
+                    <div class="plus">
+                        <img src="plus.png">
+                    </div>
+                </div>
+            </div>
+            <div class="intr_money">
+                <p>￥9999</p>
+            </div>
+            <div class="money">
+                <p>￥9999</p>
+            </div>
+            <div class="intr_operation" style="width: 146px;margin-right: 2px;color: #000000;">
+                <p>删除</p>
+            </div>
+        </div>
+        <div class="intr">
+            <div class="intr_choose">
+                <img src="choose.png" class="choose">
+                <span>选择</span>
+            </div>
+            <div class="intr_goods">
+                <img src="RTX4070TI.png">
+                <div class="intr_goods_info" style="display: block;">
+                    <p id="title">产品名称:微星魔龙RTX4070TI</p>
+                    <p>品牌:mis微星 分类:显卡</p>
+                    <p>规格:RTX4070TI顶级非公版</p>
+                    <p>配送:顺丰骑自行车专送</p>
+                </div>
+            </div>
+            <div class="intr_count">
+                <div>
+                    <div class="minus">
+                        <img src="minus.png" alt="">
+                    </div>
+                    <p style="background-color: #ffffff;">1</p>
+                    <div class="plus">
+                        <img src="plus.png">
+                    </div>
+                </div>
+            </div>
+            <div class="intr_money">
+                <p>￥7499</p>
+            </div>
+            <div class="money">
+                <p>￥7499</p>
+            </div>
+            <div class="intr_operation" style="width: 146px;margin-right: 2px;color: #000000;">
+                <p>删除</p>
+            </div>
+        </div>
+        <div class="intr">
+            <div class="intr_choose">
+                <img src="choose.png" class="choose">
+                <span>选择</span>
+            </div>
+            <div class="intr_goods">
+                <img src="RTX4070.png">
+                <div class="intr_goods_info" style="display: block;">
+                    <p id="title">产品名称:七彩虹RTX4070</p>
+                    <p>品牌:七彩虹Utral 分类:显卡</p>
+                    <p>规格:RTX4070普通非公</p>
+                    <p>配送:顺丰骑自行车专送</p>
+                </div>
+            </div>
+            <div class="intr_count">
+                <div>
+                    <div class="minus">
+                        <img src="minus.png" alt="">
+                    </div>
+                    <p style="background-color: #ffffff;">1</p>
+                    <div class="plus">
+                        <img src="plus.png">
+                    </div>
+                </div>
+            </div>
+            <div class="intr_money">
+                <p>￥5999</p>
+            </div>
+            <div class="money">
+                <p>￥5999</p>
+            </div>
+            <div class="intr_operation" style="width: 146px;margin-right: 2px;color: #000000;">
+                <p>删除</p>
+            </div>
+        </div>
+        <div class="feature">
+            <p class="fl" style="cursor: pointer;">删除所选商品</p>
+            <div class="account fr">
+                <p style="cursor: pointer" class="pay">去结算</p>
+            </div>
+            <div class="both fr">
+                <span>全选</span>
+                <p>4</p>
+                <p style="color: #000000;">件商品总计(不含运费):</p>
+                <p style="font-size: 20px;">￥0</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script src="shop.js"></script>
+</body>
+</html>
